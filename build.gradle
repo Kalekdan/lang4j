@@ -5,31 +5,29 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 println """
-*******************************************
  Building Lang4J
  Output files will be in ${rootDir}/build/libs
-*******************************************
 """
 
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'main.java.com.pixolestudios.lang4j.l4j'
+mainClassName = 'main.java.com.pixolestudios.lang4j.L4j'
 
 sourceSets.main.java.srcDirs = ['src']
 
 sourceCompatibility = 1.8
 
 ext.buildNumber = System.getenv("BUILD_NUMBER") ?: "dev"
-version 'Stable'
-
-task start(type: JavaExec) {
-    classpath sourceSets.main.runtimeClasspath
-    main = "main.java.com.pixolestudios.lang4j.l4j"
-}
+version '1.0.0-alpha'
 
 jar {
-    manifest {
-        attributes 'Main-Class': 'main.java.com.pixolestudios.lang4j.l4j'
+    jar {
+        exclude('main/java/com/pixolestudios/lang4j/DemoL4J.class')
     }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
