@@ -4,6 +4,8 @@ public class L4j {
     private static String currentLang = "eng";
     private static String resLoc = "resources/lang";
 
+    private static final String placeHolderStr = "placeholderstring";
+
     private L4j() {
     }
 
@@ -20,7 +22,11 @@ public class L4j {
     }
 
     private static String readResource(String path, String res) {
-        return FileUtils.loadResFromPropsFile(path, res);
+        String toReturn = FileUtils.loadResFromPropsFile(path, res);
+        if (toReturn == null){
+            toReturn = placeHolderStr;
+        }
+        return toReturn;
     }
 
     public static void setCurrentLang(String lang) {
