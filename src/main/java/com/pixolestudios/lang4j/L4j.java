@@ -31,4 +31,12 @@ public class L4j {
         resLoc = loc;
     }
 
+    public static String getResourceInDir(String dir, String resFile, String resName){
+        return getResourceInDir(dir, resFile, resName, currentLang);
+    }
+
+    public static String getResourceInDir(String dir, String resFile, String resName, String lang) {
+        return getResource(dir + "/" + resFile, resName, lang);
+    }
+
 }
