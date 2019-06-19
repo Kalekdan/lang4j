@@ -7,9 +7,9 @@ public class DemoL4J {
     public static void main(String[] args) {
         System.out.println(L4j.getResource("characterNames", "mc.name"));
         System.out.println(L4j.getResource("characterNames", "mc.name", "fr"));
-        System.out.println(L4j.getResource("characterNames", "mc.name", "eng"));
+        System.out.println(L4j.getResource("characterNames", "mc.name", "enfg"));
 
-        System.out.println(L4j.getResourceInDir("dialog", "npc", "alert.hurt"));
+        System.out.println(L4j.getResourceInDir("dialog", "npc", "al3ert.hurt"));
         System.out.println(L4j.getResourceInDir("dialog", "npc", "alert.hurt", "fr"));
         System.out.println(L4j.getResourceInDir("dialog", "npc", "alert.question"));
         System.out.println(L4j.getResourceInDir("dialog", "npc", "alert.question", "fr"));

@@ -1,16 +1,27 @@
 package main.java.com.pixolestudios.lang4j;
 
+import main.java.com.pixolestudios.exceptions.NoResourceFileException;
+import main.java.com.pixolestudios.exceptions.NoResourceFoundException;
+
 public class L4j {
     private static String currentLang = "eng";
     private static String resLoc = "resources/lang";
-
-    private static final String placeHolderStr = "placeholderstring";
 
     private L4j() {
     }
 
     public static String getResource(String resFile, String resName, String lang) {
-        return readResource(makePath(resFile, lang), resName);
+        String toReturn;
+        try {
+            toReturn = readResource(makePath(resFile, lang), resName);
+        } catch (NoResourceFileException e) {
+            e.printStackTrace();
+            toReturn = "";
+        } catch (NoResourceFoundException e) {
+            e.printStackTrace();
+            toReturn = "";
+        }
+        return toReturn;
     }
 
     public static String getResource(String resFile, String resName) {
@@ -21,10 +32,10 @@ public class L4j {
         return resLoc + "/" + file + "_" + lang + ".properties";
     }
 
-    private static String readResource(String path, String res) {
+    private static String readResource(String path, String res) throws NoResourceFileException, NoResourceFoundException {
         String toReturn = FileUtils.loadResFromPropsFile(path, res);
         if (toReturn == null){
-            toReturn = placeHolderStr;
+            throw new NoResourceFoundException(path, res);
         }
         return toReturn;
     }
