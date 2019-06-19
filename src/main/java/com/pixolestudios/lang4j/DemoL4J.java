@@ -1,5 +1,9 @@
 package main.java.com.pixolestudios.lang4j;
 
+/**
+ * Temporary file to act as an entry point for logger to allow for self contained testing
+ * DOES NOT GET BUILT INTO RELEASE JAR
+ */
 public class DemoL4J {
     private DemoL4J() {
     }
