@@ -26,6 +26,18 @@ public class L4jTest {
     }
 
     @Test
+    public void resourceInSubDirCanBeAccessed() {
+        String res = L4j.getResourceInDir("resourcesSubDir", "defaultTestInDir", "default.resource");
+        Assert.assertEquals("english sub directory", res);
+    }
+
+    @Test
+    public void resourceInSubDirCanBeAccessedWithLangSpecified() {
+        String res = L4j.getResourceInDir("resourcesSubDir", "defaultTestInDir", "default.resource", "fr");
+        Assert.assertEquals("french sub directory", res);
+    }
+
+    @Test
     public void setCurrentLangUpdatesCurrent() {
         L4j.setCurrentLang("eng");
         String languageName = L4j.getResource("defaultTest", "languagename");
@@ -44,6 +56,12 @@ public class L4jTest {
     @Test
     public void nonExistentResourceReturnsEmptyString(){
         String res = L4j.getResource("defaultTest", "fakeRes");
+        Assert.assertTrue(res.isEmpty());
+    }
+
+    @Test
+    public void nonExistentResourceFileReturnsEmptyString(){
+        String res = L4j.getResource("fakeFile", "default.resource");
         Assert.assertTrue(res.isEmpty());
     }
 }
