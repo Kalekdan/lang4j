@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class JUnitFrameworkTest {
     @Test
-    public void TestJUnitSetup(){
+    public void TestJUnitSetup() {
         String toAssert = "Expected";
         Assert.assertEquals("Expected", toAssert);
     }

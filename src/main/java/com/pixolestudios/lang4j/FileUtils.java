@@ -14,8 +14,9 @@ public class FileUtils {
 
     /**
      * Loads a resource as given in the path provided
+     *
      * @param fileLoc path to resource file
-     * @param res resource name to load
+     * @param res     resource name to load
      * @return resouce requested
      * @throws NoResourceFileException Thrown if resource file is not found
      */
