@@ -6,15 +6,17 @@ import main.java.com.pixolestudios.exceptions.NoResourceFoundException;
 public class L4j {
     private static String currentLang = "eng";
     private static String resLoc = "resources/lang";
+    private static String defResFileName = "resources";
 
     private L4j() {
     }
 
     /**
      * Gets a resource from the provided file using language provided
+     *
      * @param resFile file name
      * @param resName name of the resource
-     * @param lang language to get resource for
+     * @param lang    language to get resource for
      * @return resource requested, or empty string if not found
      */
     public static String getResource(String resFile, String resName, String lang) {
@@ -32,7 +34,29 @@ public class L4j {
     }
 
     /**
+     * Gets a resource from the default file using current language
+     *
+     * @param resName name of the resource
+     * @return resource requested, or empty string if not found
+     */
+    public static String getDefResource(String resName) {
+        return getResource(defResFileName, resName);
+    }
+
+    /**
+     * Gets a resource from the default file using provided language
+     *
+     * @param resName name of the resource
+     * @param lang    language to get resource for
+     * @return resource requested, or empty string if not found
+     */
+    public static String getDefResource(String resName, String lang) {
+        return getResource(defResFileName, resName, lang);
+    }
+
+    /**
      * Gets a resource from the provided file using current language
+     *
      * @param resFile file name
      * @param resName name of the resource
      * @return resource requested, or empty string if not found
@@ -47,7 +71,7 @@ public class L4j {
 
     private static String readResource(String path, String res) throws NoResourceFileException, NoResourceFoundException {
         String toReturn = FileUtils.loadResFromPropsFile(path, res);
-        if (toReturn == null){
+        if (toReturn == null) {
             throw new NoResourceFoundException(path, res);
         }
         return toReturn;
@@ -55,6 +79,7 @@ public class L4j {
 
     /**
      * Updates the current language
+     *
      * @param lang the new current language, to be used when not otherwise specified
      */
     public static void setCurrentLang(String lang) {
@@ -63,6 +88,7 @@ public class L4j {
 
     /**
      * Updates the resource location
+     *
      * @param loc location the resource files are to be expected
      */
     public static void setResLoc(String loc) {
@@ -70,22 +96,33 @@ public class L4j {
     }
 
     /**
+     * Updates the default resource file name
+     *
+     * @param resFile name of the file to use by default
+     */
+    public static void setDefaultResFileName(String resFile) {
+        defResFileName = resFile;
+    }
+
+    /**
      * Gets a resource in a subdirectory from the provided file using current lang
-     * @param dir directory the resource will be in
+     *
+     * @param dir     directory the resource will be in
      * @param resFile file name
      * @param resName name of the resource
      * @return resource requested, or empty string if not found
      */
-    public static String getResourceInDir(String dir, String resFile, String resName){
+    public static String getResourceInDir(String dir, String resFile, String resName) {
         return getResourceInDir(dir, resFile, resName, currentLang);
     }
 
     /**
      * Gets a resource in a subdirectory from the provided file using language provided
-     * @param dir directory the resource will be in
+     *
+     * @param dir     directory the resource will be in
      * @param resFile file name
      * @param resName name of the resource
-     * @param lang language to get resource for
+     * @param lang    language to get resource for
      * @return resource requested, or empty string if not found
      */
     public static String getResourceInDir(String dir, String resFile, String resName, String lang) {

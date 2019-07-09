@@ -48,20 +48,30 @@ public class L4jTest {
     }
 
     @Test
-    public void getResourceReturnsString(){
+    public void getResourceReturnsString() {
         String res = L4j.getResource("defaultTest", "default.resource");
         Assert.assertTrue(!res.isEmpty());
     }
 
     @Test
-    public void nonExistentResourceReturnsEmptyString(){
+    public void nonExistentResourceReturnsEmptyString() {
         String res = L4j.getResource("defaultTest", "fakeRes");
         Assert.assertTrue(res.isEmpty());
     }
 
     @Test
-    public void nonExistentResourceFileReturnsEmptyString(){
+    public void nonExistentResourceFileReturnsEmptyString() {
         String res = L4j.getResource("fakeFile", "default.resource");
         Assert.assertTrue(res.isEmpty());
+    }
+
+    @Test
+    public void getDefaultResourceUsesDefaultFile() {
+        String res = L4j.getDefResource("default.resource");
+        Assert.assertEquals("defaultfilenameresource_eng", res);
+
+        L4j.setDefaultResFileName("defaultTest");
+        res = L4j.getDefResource("default.resource");
+        Assert.assertEquals("default resource english", res);
     }
 }
