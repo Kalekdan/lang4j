@@ -11,6 +11,7 @@ public class L4jTest {
     public void setDefaults() {
         L4j.setResLoc("src/test/java/com/pixolestudios/lang4j/testResources");
         L4j.setCurrentLang("eng");
+        L4j.setDefaultResFileName("resources");
     }
 
     @Test
@@ -72,6 +73,16 @@ public class L4jTest {
 
         L4j.setDefaultResFileName("defaultTest");
         res = L4j.getDefResource("default.resource");
+        Assert.assertEquals("default resource english", res);
+    }
+
+    @Test
+    public void getDefaultResourceSpecifiedLangUsesDefaultFile() {
+        String res = L4j.getDefResource("default.resource", "fr");
+        Assert.assertEquals("defaultfilenameresource_fr", res);
+
+        L4j.setDefaultResFileName("defaultTest");
+        res = L4j.getDefResource("default.resource", "eng");
         Assert.assertEquals("default resource english", res);
     }
 }
