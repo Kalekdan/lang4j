@@ -44,7 +44,7 @@ You can also change the location where the resouces are stored (by default ```re
 L4j.setResLoc("res/languagepacks");
 ~~~
 
-If you are not specifying the resource file and are getting the resources using ````getDefResource(...)``, you can change the default file that will be used by using:
+If you are not specifying the resource file and are getting the resources using ```getDefResource(...)```, you can change the default file that will be used by using:
 ~~~ java
 // The default resource location will now be /defFilename_lang.properties
 L4j.setDefaultResFileName("defFilename");
